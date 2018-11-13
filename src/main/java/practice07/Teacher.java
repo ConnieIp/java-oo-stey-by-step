@@ -1,42 +1,16 @@
 package practice07;
 
 public class Teacher extends Person{
-    private String name;
-    private int age;
     private Klass klass;
 
     public Teacher(String name, int age, Klass klass) {
         super(name, age);
-        this.name = name;
-        this.age = age;
         this.klass = klass;
     }
 
     public Teacher(String name, int age) {
         super(name, age);
-        this.name = name;
-        this.age = age;
         this.klass = null;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public Klass getKlass() {

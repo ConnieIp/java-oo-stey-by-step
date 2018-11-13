@@ -4,6 +4,7 @@ public class Klass {
     private int number;
     private String displayName;
     private Student leader;
+    private Teacher teacher;
 
     public Klass(int number) {
         this.number = number;
@@ -34,11 +35,20 @@ public class Klass {
         this.leader = leader;
     }
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     public void assignLeader(Student student){
         if(student.getKlass().getNumber()==number){
             leader = student;
-            System.out.print("I am Tom. I know "+student.getName()+" become Leader of "+student.getKlass().getDisplayName()+".\n");
-
+            if(teacher!=null) {
+                teacher.notifyTeacher(student);
+            }
         }else{
             System.out.print("It is not one of us.\n");
             leader=new Student();
@@ -47,7 +57,9 @@ public class Klass {
 
     public void appendMember(Student student){
         student.setKlass(this);
-        System.out.print("I am Tom. I know "+student.getName()+" has joined "+student.getKlass().getDisplayName()+".\n");
+        if(teacher!=null) {
+            teacher.notifyTeacher(student);
+        }
     }
 }
 

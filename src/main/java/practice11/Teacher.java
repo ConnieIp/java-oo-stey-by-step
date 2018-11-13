@@ -4,55 +4,19 @@ import java.util.LinkedList;
 import java.util.LinkedList;
 
 public class Teacher extends Person{
-    private int id;
-    private String name;
-    private int age;
     private LinkedList<Klass> classes;
 
     public Teacher(int id, String name, int age) {
         super(id, name, age);
-        this.id = id;
-        this.name = name;
-        this.age = age;
         this.classes = null;
     }
 
     public Teacher(int id, String name, int age, LinkedList<Klass> classes) {
         super(id, name, age);
-        this.id = id;
-        this.name = name;
-        this.age = age;
         this.classes = classes;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public void setAge(int age) {
-        this.age = age;
+        for(Klass klass:classes){
+            klass.setTeacher(this);
+        }
     }
 
     public LinkedList<Klass> getClasses() {
@@ -93,5 +57,13 @@ public class Teacher extends Person{
             }
         }
         return false;
+    }
+
+    public void notifyTeacher(Student student) {
+        if(student.getKlass().getLeader()!=null && student.getKlass().getLeader().getId()==student.getId()){
+            System.out.print("I am "+super.getName()+". I know "+student.getName()+" become Leader of "+student.getKlass().getDisplayName()+".\n");
+        }else {
+            System.out.print("I am "+super.getName()+". I know " + student.getName() + " has joined " + student.getKlass().getDisplayName() + ".\n");
+        }
     }
 }
